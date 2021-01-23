@@ -28,5 +28,13 @@
             lbAge.Items.Add(item.Name & "," & item.Age & ", " & item.price.ToString("c"))
         Next
 
+        Dim PriceRank = From p As Person In personList 'linq creates collection (here AgeRank)
+                        Select Name = p.FistName & " " & p.LastName, Age = p.Age,
+                          price = admission(p)
+                        Order By price
+
+        For Each item In PriceRank 'No type declaration beacause linq has got some anonymous type...
+            lbPrice.Items.Add(item.Name & "," & item.Age & ", " & item.price.ToString("c"))
+        Next
     End Sub
 End Class
